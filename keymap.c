@@ -1,7 +1,7 @@
 #include <keymap_spanish.h>
 
 /*
-Ebony & Ivory - MK3.0.2
+Ebony & Ivory - Mark3
 */
 
 #include QMK_KEYBOARD_H
@@ -44,13 +44,17 @@ Ebony & Ivory - MK3.0.2
 enum {
     TD_ENE,
 	TD_DRS,
+    TD_FAT
 };
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for N, twice for Ñ
     [TD_ENE] = ACTION_TAP_DANCE_DOUBLE(KC_N, KC_SCLN),
+    // Tap once for U, twice for ¨
   	[TD_DRS] = ACTION_TAP_DANCE_DOUBLE(KC_U, ES_DIAE),
+    // Tap once for F, twice for @
+    [TD_FAT] = ACTION_TAP_DANCE_DOUBLE(KC_F, ES_AT),
 };
 
 //TAPDANCE - END
@@ -60,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y, TD(TD_DRS),    KC_I,    KC_O,   KC_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_TAB,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, ES_ACUT,  KC_ENT,
+       KC_TAB,    KC_A,    KC_S,  KC_D,TD(TD_FAT),    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, ES_ACUT,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                   TD(TD_ENE),    KC_M, ES_COMM,  ES_DOT, ES_MINS, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -79,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|  				   |--------+--------+--------+--------+--------+--------|
   //    ¡        (        )        [         ]        |                                4        5        6       +       -         %
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      ES_EXLM, ES_LCBR, ES_RCBR, ES_TILD, ES_QUOT,   ES_AT,                         KC_7,    KC_8,    KC_9,    KC_0,  ES_DOT,  ES_EQL,
+      ES_EXLM, ES_LCBR, ES_RCBR, ES_TILD, ES_QUOT, XXXXXXX,                         KC_7,    KC_8,    KC_9,    KC_0,  ES_DOT,  ES_EQL,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
   //    !         {       }      MUERTO     '         @                                7        8        9        0        .        = 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
