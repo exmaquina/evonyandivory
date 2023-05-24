@@ -59,6 +59,28 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 //TAPDANCE - END
 
+//MACRO
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case KC_ABRX:
+      if (record->event.pressed) {
+        SEND_STRING("Abraxas.2019");
+      }
+      break;
+    case KC_YKOL:
+      if (record->event.pressed) {
+        SEND_STRING("Yakol.ps.13");
+      }
+      break;
+  }
+  return true;
+}
+
+
+
+//MACRO - END
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -83,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|  				   |--------+--------+--------+--------+--------+--------|
   //    ¡        (        )        [         ]        |                                4        5        6       +       -         %
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      ES_EXLM, ES_LCBR, ES_RCBR, ES_TILD, ES_QUOT, XXXXXXX,                         KC_7,    KC_8,    KC_9,    KC_0,  ES_DOT,  ES_EQL,
+      ES_EXLM, ES_LCBR, ES_RCBR, ES_TILD, ES_QUOT, KC_ABRX,                         KC_7,    KC_8,    KC_9,    KC_0,  ES_DOT,  ES_EQL,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
   //    !         {       }      MUERTO     '         @                                7        8        9        0        .        = 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -214,10 +236,4 @@ bool oled_task_user(void) {
     return false;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    set_keylog(keycode, record);
-  }
-  return true;
-}
 #endif // OLED_ENABLE
